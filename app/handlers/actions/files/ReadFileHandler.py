@@ -35,7 +35,8 @@ class ReadFileHandler(BaseHandler):
                                  module=session.get('type'),
                                  path=path,
                                  encoding=encoding,
-                                 session=session)
+                                 session=session,
+                                 test="test")
         answer = action.run()
 
         self.json(answer)

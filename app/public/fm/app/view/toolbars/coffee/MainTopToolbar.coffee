@@ -104,15 +104,15 @@ Ext.define 'FM.view.toolbars.MainTopToolbar',
               handler: () ->
                 records = FM.helpers.GetSelected(FM.Active)
                 FM.Actions.CreateArchive.execute(FM.Active, records)
-            }
-            {
-              text: FM.Actions.Chmod.getMenuText()
-              name: FM.Actions.Chmod.getIconCls()
-              iconCls: FM.Actions.Chmod.getIconCls()
-              handler: () ->
-                records = FM.helpers.GetSelected(FM.Active)
-                FM.Actions.Chmod.execute(FM.Active, records)
             },
+            # {
+            #   text: FM.Actions.Chmod.getMenuText()
+            #   name: FM.Actions.Chmod.getIconCls()
+            #   iconCls: FM.Actions.Chmod.getIconCls()
+            #   handler: () ->
+            #     records = FM.helpers.GetSelected(FM.Active)
+            #     FM.Actions.Chmod.execute(FM.Active, records)
+            # },
             {
               text: FM.Actions.Remove.getMenuText()
               name: FM.Actions.Remove.getIconCls()

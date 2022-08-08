@@ -249,7 +249,7 @@ Ext.define 'FM.Application',
     allowed_multiple[FM.Actions.CreateCopy.self.getName()] = true
     allowed_multiple[FM.Actions.Copy.self.getName()] = true
     allowed_multiple[FM.Actions.Move.self.getName()] = true
-    allowed_multiple[FM.Actions.Chmod.self.getName()] = true
+    # allowed_multiple[FM.Actions.Chmod.self.getName()] = true
     allowed_multiple[FM.Actions.Remove.self.getName()] = true
 
     allowed_dir[FM.Actions.Open.self.getName()] = true
@@ -263,7 +263,7 @@ Ext.define 'FM.Application',
     allowed_dir[FM.Actions.CreateCopy.self.getName()] = true
     allowed_dir[FM.Actions.Copy.self.getName()] = true
     allowed_dir[FM.Actions.Move.self.getName()] = true
-    allowed_dir[FM.Actions.Chmod.self.getName()] = true
+    # allowed_dir[FM.Actions.Chmod.self.getName()] = true
     allowed_dir[FM.Actions.Remove.self.getName()] = true
     allowed_dir[FM.Actions.Rename.self.getName()] = true
     allowed_dir[FM.Actions.Refresh.self.getName()] = true

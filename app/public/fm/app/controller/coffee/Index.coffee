@@ -44,7 +44,7 @@ Ext.define 'FM.controller.Index',
     'FM.action.View'
     'FM.action.ViewImage'
     'FM.action.Edit'
-    'FM.action.Chmod'
+    # 'FM.action.Chmod'
     'FM.action.Copy'
     'FM.action.CreateCopy'
     'FM.action.Move'
@@ -143,7 +143,7 @@ Ext.define 'FM.controller.Index',
     FM.Actions.View = Ext.create "FM.action.View"
     FM.Actions.ViewImage = Ext.create "FM.action.ViewImage"
     FM.Actions.Edit = Ext.create "FM.action.Edit"
-    FM.Actions.Chmod = Ext.create "FM.action.Chmod"
+    # FM.Actions.Chmod = Ext.create "FM.action.Chmod"
     FM.Actions.Copy = Ext.create "FM.action.Copy"
     FM.Actions.CreateCopy = Ext.create "FM.action.CreateCopy"
     FM.Actions.Move = Ext.create "FM.action.Move"
@@ -184,7 +184,7 @@ Ext.define 'FM.controller.Index',
     FM.Events.file.openDirectory = 'eventFilesDirectoryOpen'
     FM.Events.file.listFiles = 'eventFilesListFiles'
     FM.Events.file.removeFiles = 'eventFilesRemoveFiles'
-    FM.Events.file.chmodFiles = 'eventFilesChmodFiles'
+    # FM.Events.file.chmodFiles = 'eventFilesChmodFiles'
     FM.Events.file.makeDirectory = 'eventFilesMakeDirectory'
     FM.Events.file.newFile = 'eventFilesNewFile'
     FM.Events.file.renameFile = 'eventFilesRenameFile'

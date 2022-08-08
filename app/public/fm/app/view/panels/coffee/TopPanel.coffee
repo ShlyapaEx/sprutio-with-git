@@ -132,7 +132,7 @@ Ext.define 'FM.view.panels.TopPanel',
       toolbar)[0]
     create_archive_button = Ext.ComponentQuery.query("menuitem[name=" + FM.Actions.CreateArchive.getIconCls() + "]",
       toolbar)[0]
-    chmod_button = Ext.ComponentQuery.query("menuitem[name=" + FM.Actions.Chmod.getIconCls() + "]", toolbar)[0]
+    # chmod_button = Ext.ComponentQuery.query("menuitem[name=" + FM.Actions.Chmod.getIconCls() + "]", toolbar)[0]
     remove_button = Ext.ComponentQuery.query("menuitem[name=" + FM.Actions.Remove.getIconCls() + "]", toolbar)[0]
 
     ipblock_button = Ext.ComponentQuery.query("menuitem[name=" + FM.Actions.IPBlock.getIconCls() + "]", toolbar)[0]
@@ -262,10 +262,10 @@ Ext.define 'FM.view.panels.TopPanel',
     else
       create_copy_button.setDisabled(true)
 
-    if FM.helpers.isAllowed(FM.Actions.Chmod, panel, files)
-      chmod_button.setDisabled(false)
-    else
-      chmod_button.setDisabled(true)
+    # if FM.helpers.isAllowed(FM.Actions.Chmod, panel, files)
+    #   chmod_button.setDisabled(false)
+    # else
+    #   chmod_button.setDisabled(true)
 
     if FM.helpers.isAllowed(FM.Actions.Remove, panel, files)
       remove_button.setDisabled(false)
@@ -277,7 +277,9 @@ Ext.define 'FM.view.panels.TopPanel',
     else
       ipblock_button.setDisabled(true)
 
-    if view_button.isDisabled() and edit_button.isDisabled() and rename_button.isDisabled() and copy_button.isDisabled() and move_button.isDisabled() and create_copy_button.isDisabled() and create_archive_button.isDisabled() and chmod_button.isDisabled() and remove_button.isDisabled()
+    if view_button.isDisabled() and edit_button.isDisabled() and rename_button.isDisabled() and copy_button.isDisabled() and move_button.isDisabled() and create_copy_button.isDisabled() and create_archive_button.isDisabled() 
+    # and chmod_button.isDisabled() 
+    and remove_button.isDisabled()
       operations_button.setDisabled(true)
     else
       operations_button.setDisabled(false)

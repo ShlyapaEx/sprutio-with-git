@@ -8,7 +8,7 @@ from beget_msgpack import Controller
 from base.exc import Error
 from lib.FileManager import FM
 from lib.FileManager.OperationStatus import OperationStatus
-from lib.FileManager.workers.ftp.chmodFiles import ChmodFiles
+# from lib.FileManager.workers.ftp.chmodFiles import ChmodFiles
 from lib.FileManager.workers.ftp.copyBetweenFtp import CopyBetweenFtp
 from lib.FileManager.workers.ftp.copyFromFtp import CopyFromFtp
 from lib.FileManager.workers.ftp.copyFromFtpToSftp import CopyFromFtpToSftp
@@ -160,11 +160,13 @@ class FtpController(Controller):
 
     @staticmethod
     def run_subprocess(logger, worker_object, status_id, name, params):
-        logger.info("FM call FTP long action %s %s %s" % (name, pprint.pformat(status_id), pprint.pformat(params.get("login"))))
+        logger.info("FM call FTP long action %s %s %s" % (
+            name, pprint.pformat(status_id), pprint.pformat(params.get("login"))))
 
         def async_check_operation(op_status_id):
             operation = OperationStatus.load(op_status_id)
-            logger.info("Operation id='%s' status is '%s'" % (str(status_id), operation.status))
+            logger.info("Operation id='%s' status is '%s'" %
+                        (str(status_id), operation.status))
             if operation.status != OperationStatus.STATUS_WAIT:
                 raise Error("Operation status is not wait - aborting")
 
@@ -226,7 +228,8 @@ class FtpController(Controller):
 
         def async_on_finish(worker_process, op_status_id, pid=None, pname=None):
             logger.info("Process on_finish()")
-            logger.info("Process exit code %s info = %s", str(process.exitcode), pprint.pformat(process))
+            logger.info("Process exit code %s info = %s", str(
+                process.exitcode), pprint.pformat(process))
 
             if worker_process.exitcode < 0:
                 async_on_abort(status_id, pid=pid, pname=pname)
@@ -250,7 +253,8 @@ class FtpController(Controller):
             process = worker_object(**kwargs)
             process.start()
             process.join()
-            async_on_finish(process, status_id, pid=process.pid, pname=process.name)
+            async_on_finish(process, status_id,
+                            pid=process.pid, pname=process.name)
 
         except Exception as e:
             result = {
@@ -283,29 +287,29 @@ class FtpController(Controller):
 
             return result
 
-    def action_chmod_files(self, login, password, status_id, params, session):
-        try:
-            self.logger.info("FM starting subprocess worker chmod_files %s %s", pprint.pformat(status_id),
-                             pprint.pformat(login))
+    # def action_chmod_files(self, login, password, status_id, params, session):
+    #     try:
+    #         self.logger.info("FM starting subprocess worker chmod_files %s %s", pprint.pformat(status_id),
+    #                          pprint.pformat(login))
 
-            p = Process(target=self.run_subprocess,
-                        args=(self.logger, ChmodFiles, status_id.decode('UTF-8'), FM.Action.CHMOD, {
-                            "login": login.decode('UTF-8'),
-                            "password": password.decode('UTF-8'),
-                            "params": byte_to_unicode_dict(params),
-                            "session": byte_to_unicode_dict(session)
-                        }))
+    #         p = Process(target=self.run_subprocess,
+    #                     args=(self.logger, ChmodFiles, status_id.decode('UTF-8'), FM.Action.CHMOD, {
+    #                         "login": login.decode('UTF-8'),
+    #                         "password": password.decode('UTF-8'),
+    #                         "params": byte_to_unicode_dict(params),
+    #                         "session": byte_to_unicode_dict(session)
+    #                     }))
 
-            p.start()
-            return {"error": False}
-        except Exception as e:
-            result = {
-                "error": True,
-                "message": str(e),
-                "traceback": traceback.format_exc()
-            }
+    #         p.start()
+    #         return {"error": False}
+    #     except Exception as e:
+    #         result = {
+    #             "error": True,
+    #             "message": str(e),
+    #             "traceback": traceback.format_exc()
+    #         }
 
-            return result
+    #         return result
 
     def action_copy_files(self, login, password, status_id, source, target, paths, overwrite):
         try:
@@ -334,15 +338,16 @@ class FtpController(Controller):
                 p = Process(target=self.run_subprocess,
                             args=(self.logger, CopyFromFtpToWebDav, status_id.decode('UTF-8'), FM.Action.COPY, params))
             elif (source.get('type') == FM.Module.FTP and target.get('type') == FM.Module.FTP) and (
-                        source.get('server_id') == target.get('server_id')):
+                    source.get('server_id') == target.get('server_id')):
                 p = Process(target=self.run_subprocess,
                             args=(self.logger, CopyFtp, status_id.decode('UTF-8'), FM.Action.COPY, params))
             elif (source.get('type') == FM.Module.FTP and target.get('type') == FM.Module.FTP) and (
-                        source.get('server_id') != target.get('server_id')):
+                    source.get('server_id') != target.get('server_id')):
                 p = Process(target=self.run_subprocess,
                             args=(self.logger, CopyBetweenFtp, status_id.decode('UTF-8'), FM.Action.COPY, params))
             else:
-                raise Exception("Unable to get worker for these source and target")
+                raise Exception(
+                    "Unable to get worker for these source and target")
 
             p.start()
             return {"error": False}
@@ -383,15 +388,16 @@ class FtpController(Controller):
                 p = Process(target=self.run_subprocess,
                             args=(self.logger, MoveFromFtpToWebDav, status_id.decode('UTF-8'), FM.Action.MOVE, params))
             elif (source.get('type') == FM.Module.FTP and target.get('type') == FM.Module.FTP) and (
-                        source.get('server_id') == target.get('server_id')):
+                    source.get('server_id') == target.get('server_id')):
                 p = Process(target=self.run_subprocess,
                             args=(self.logger, MoveFtp, status_id.decode('UTF-8'), FM.Action.MOVE, params))
             elif (source.get('type') == FM.Module.FTP and target.get('type') == FM.Module.FTP) and (
-                        source.get('server_id') != target.get('server_id')):
+                    source.get('server_id') != target.get('server_id')):
                 p = Process(target=self.run_subprocess,
                             args=(self.logger, MoveBetweenFtp, status_id.decode('UTF-8'), FM.Action.MOVE, params))
             else:
-                raise Exception("Unable to get worker for these source and target")
+                raise Exception(
+                    "Unable to get worker for these source and target")
 
             p.start()
             return {"error": False}
@@ -464,19 +470,23 @@ class FtpController(Controller):
                 "message": "Request timeout"
             }
             if process.is_alive():
-                self.logger.error('Terminate child by timeout with pid: %s', process.pid)
+                self.logger.error(
+                    'Terminate child by timeout with pid: %s', process.pid)
                 process.terminate()
 
         return self.on_finish(process, result)
 
     def on_finish(self, process, data=None):
         self.logger.info("Process on_finish()")
-        self.logger.info("Process exit code %s info = %s" % (str(process.exitcode), pprint.pformat(process)))
+        self.logger.info("Process exit code %s info = %s" %
+                         (str(process.exitcode), pprint.pformat(process)))
 
         if process.exitcode < 0:
-            raise Exception("Process aborted with exitcode = %s" % str(process.exitcode))
+            raise Exception("Process aborted with exitcode = %s" %
+                            str(process.exitcode))
 
         elif process.exitcode > 0:
-            raise Exception("Process finish with errors, exitcode = %s" % str(process.exitcode))
+            raise Exception(
+                "Process finish with errors, exitcode = %s" % str(process.exitcode))
 
         return data

@@ -49,7 +49,7 @@ Ext.define 'FM.view.windows.CreateArchiveWindow',
 
         Ext.ComponentQuery.query('textfield[name=archive-file-name]', @)[0].setValue("archive_" + FM.helpers.DateTimestamp())
         Ext.ComponentQuery.query('textfield[name=archive-path-name]', @)[0].setValue(@getSession().path)
-
+  # WTF????
   initComponent: () ->
     FM.Logger.debug('FM.view.windows.ChmodFilesWindow initComponent() called', arguments)
 

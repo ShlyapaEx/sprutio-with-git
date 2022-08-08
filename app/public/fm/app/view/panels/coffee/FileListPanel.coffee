@@ -198,13 +198,13 @@ Ext.define 'FM.view.panels.FileListPanel',
         handler: () =>
           FM.Actions.AnalyzeSize.execute(@, path)
 
-    if FM.helpers.isAllowed(FM.Actions.Chmod, @, selection_array)
-      items.push
-        text: FM.Actions.Chmod.getMenuText()
-        iconCls: FM.Actions.Chmod.getIconCls()
-        handler: () =>
-          records = FM.helpers.GetSelected(@)
-          FM.Actions.Chmod.execute(@, records)
+    # if FM.helpers.isAllowed(FM.Actions.Chmod, @, selection_array)
+    #   items.push
+    #     text: FM.Actions.Chmod.getMenuText()
+    #     iconCls: FM.Actions.Chmod.getIconCls()
+    #     handler: () =>
+    #       records = FM.helpers.GetSelected(@)
+    #       FM.Actions.Chmod.execute(@, records)
 
     if FM.helpers.isAllowed(FM.Actions.Remove, @, selection_array)
       items.push

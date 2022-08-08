@@ -10,7 +10,7 @@ Ext.define('FM.controller.FileHandler', {
           eventFilesDirectoryOpen: 'openDirectory',
           eventFilesListFiles: 'listFiles',
           eventFilesRemoveFiles: 'removeFiles',
-          eventFilesChmodFiles: 'chmodFiles',
+          // eventFilesChmodFiles: 'chmodFiles',
           eventFilesMakeDirectory: 'makeDirectory',
           eventFilesNewFile: 'newFile',
           eventFilesRenameFile: 'renameFile',
@@ -269,32 +269,32 @@ Ext.define('FM.controller.FileHandler', {
       FM.helpers.ShowError(t("Unknown operation status. Please contact Support."));
     }
   },
-  chmodFiles: function(status, session, progress_window, params) {
-    FM.Logger.log('Event chmodFiles run in FileHandler! data = ', arguments);
-    if ((status.status != null) && (status.status === FM.Status.STATUS_SUCCESS || status.status === FM.Status.STATUS_ABORT)) {
-      progress_window.close();
-      FM.helpers.ApplySession(session, function(panel) {
-        panel.filelist.clearListCache();
-        if (panel.session.path === session.path) {
-          return FM.Actions.Refresh.execute([panel]);
-        }
-      });
-      if ((status.data.errors != null) && status.data.errors.length > 0) {
-        FM.helpers.ShowError(Ext.util.Format.format(t("Unable to change attributes of {0} elements."), status.data.errors.length));
-      }
-      if (status.status === FM.Status.STATUS_ABORT) {
-        return FM.Logger.info('Remove Operation Aborted', status);
-      } else {
-        return FM.Logger.info('Operation success', status);
-      }
-    } else if ((status.status != null) && status.status === FM.Status.STATUS_ERROR) {
-      progress_window.close();
-      FM.Logger.info('Operation error', status);
-      FM.helpers.ShowError(t("Error during operation. Please contact Support."));
-    } else {
-      FM.helpers.ShowError(t("Unknown operation status. Please contact Support."));
-    }
-  },
+  // chmodFiles: function(status, session, progress_window, params) {
+  //   FM.Logger.log('Event chmodFiles run in FileHandler! data = ', arguments);
+  //   if ((status.status != null) && (status.status === FM.Status.STATUS_SUCCESS || status.status === FM.Status.STATUS_ABORT)) {
+  //     progress_window.close();
+  //     FM.helpers.ApplySession(session, function(panel) {
+  //       panel.filelist.clearListCache();
+  //       if (panel.session.path === session.path) {
+  //         return FM.Actions.Refresh.execute([panel]);
+  //       }
+  //     });
+  //     if ((status.data.errors != null) && status.data.errors.length > 0) {
+  //       FM.helpers.ShowError(Ext.util.Format.format(t("Unable to change attributes of {0} elements."), status.data.errors.length));
+  //     }
+  //     if (status.status === FM.Status.STATUS_ABORT) {
+  //       return FM.Logger.info('Remove Operation Aborted', status);
+  //     } else {
+  //       return FM.Logger.info('Operation success', status);
+  //     }
+  //   } else if ((status.status != null) && status.status === FM.Status.STATUS_ERROR) {
+  //     progress_window.close();
+  //     FM.Logger.info('Operation error', status);
+  //     FM.helpers.ShowError(t("Error during operation. Please contact Support."));
+  //   } else {
+  //     FM.helpers.ShowError(t("Unknown operation status. Please contact Support."));
+  //   }
+  // },
   analyzeSize: function(status, session, chart_window) {
     var chart_colors, chart_list, chart_series, file, files_chart, files_list, i, index, item, j, k, l, len, len1, len2, len3, len4, m, min_sector, other_data, other_size, percent, ref, ref1, ref2, total_size;
     FM.Logger.log('Event analyzeSize run in FileHandler! data = ', arguments);

@@ -10,7 +10,8 @@ class BaseAction(object):
 
     @staticmethod
     def get_rpc_request(user=None, password=None, logger=None):
-        factory = beget_msgpack.RequestFactory(rpc, user=user, password=password, logger=logger)
+        factory = beget_msgpack.RequestFactory(
+            rpc, user=user, password=password, logger=logger)
         request = factory.get_request('default')
         return request
 
@@ -79,7 +80,7 @@ class Actions(object):
     UPLOAD = 'actions.files.upload.UploadFile'
     LIST_FILES = 'actions.files.list.ListFiles'
     REMOVE_FILES = 'actions.files.remove.RemoveFiles'
-    CHMOD_FILES = 'actions.files.chmod.ChmodFiles'
+    # CHMOD_FILES = 'actions.files.chmod.ChmodFiles'
     MAKE_DIR = 'actions.files.mkdir.MakeDir'
     NEW_FILE = 'actions.files.newfile.NewFile'
     READ_FILE = 'actions.files.read.ReadFile'
@@ -139,7 +140,7 @@ class Action(object):
 
     VIEW = 'FM.action.View'
     EDIT = 'FM.action.Edit'
-    CHMOD = 'FM.action.Chmod'
+    # CHMOD = 'FM.action.Chmod'
     COPY = 'FM.action.Copy'
     CREATE_COPY = 'FM.action.CreateCopy'
     MOVE = 'FM.action.Move'
@@ -178,7 +179,8 @@ class Action(object):
 class ActionsProvider:
     @staticmethod
     def get_action(action_name, request, *args, **kwargs):
-        module_name = ActionsProvider.get_module_name(action_name, *args, **kwargs)
+        module_name = ActionsProvider.get_module_name(
+            action_name, *args, **kwargs)
         module_obj = __import__(module_name)
 
         # Find module by name

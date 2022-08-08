@@ -6,7 +6,7 @@ from handlers import UploadHandler
 from handlers.actions.archive import ArchiveCreateHandler
 from handlers.actions.archive import ArchiveExtractHandler
 from handlers.actions.files import AnalyzeSizeHandler
-from handlers.actions.files import ChmodFilesHandler
+# from handlers.actions.files import ChmodFilesHandler
 from handlers.actions.files import CopyFilesHandler
 from handlers.actions.files import CreateCopyHandler
 from handlers.actions.files import DownloadHandler
@@ -53,12 +53,13 @@ HANDLERS = [
     (r"/actions/main/save_session", SaveSessionHandler.SaveSessionHandler),
     (r"/actions/main/init_session", InitSessionHandler.InitSessionHandler),
     (r"/actions/main/check_status", CheckStatusHandler.CheckStatusHandler),
-    (r"/actions/main/cancel_operation", CancelOperationHandler.CancelOperationHandler),
+    (r"/actions/main/cancel_operation",
+     CancelOperationHandler.CancelOperationHandler),
     (r"/actions/main/save_settings", SaveSettingsHandler.SaveSettingsHandler),
     (r"/actions/main/logout", LogoutHandler.LogoutHandler),
     (r"/actions/files/list", ListFilesHandler.ListFilesHandler),
     (r"/actions/files/remove", RemoveFilesHandler.RemoveFilesHandler),
-    (r"/actions/files/chmod", ChmodFilesHandler.ChmodFilesHandler),
+    # (r"/actions/files/chmod", ChmodFilesHandler.ChmodFilesHandler),
     (r"/actions/files/mkdir", MakeDirHandler.MakeDirHandler),
     (r"/actions/files/newfile", NewFileHandler.NewFileHandler),
     (r"/actions/files/rename", RenameFileHandler.RenameFileHandler),
@@ -82,7 +83,10 @@ HANDLERS = [
     (r"/actions/sftp/create", SftpCreateConnectionHandler.SftpCreateConnectionHandler),
     (r"/actions/sftp/update", SftpUpdateConnectionHandler.SftpUpdateConnectionHandler),
     (r"/actions/sftp/remove", SftpRemoveConnectionHandler.SftpRemoveConnectionHandler),
-    (r"/actions/webdav/create", WebDavCreateConnectionHandler.WebDavCreateConnectionHandler),
-    (r"/actions/webdav/update", WebDavUpdateConnectionHandler.WebDavUpdateConnectionHandler),
-    (r"/actions/webdav/remove", WebDavRemoveConnectionHandler.WebDavRemoveConnectionHandler)
+    (r"/actions/webdav/create",
+     WebDavCreateConnectionHandler.WebDavCreateConnectionHandler),
+    (r"/actions/webdav/update",
+     WebDavUpdateConnectionHandler.WebDavUpdateConnectionHandler),
+    (r"/actions/webdav/remove",
+     WebDavRemoveConnectionHandler.WebDavRemoveConnectionHandler)
 ]

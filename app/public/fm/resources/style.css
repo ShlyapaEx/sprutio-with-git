@@ -224,9 +224,9 @@ body {
 .fm-action-create-copy {
   background-image: url('/fm/resources/images/actions/16/create-copy.png');
 }
-.fm-action-chmod {
+/* .fm-action-chmod {
   background-image: url('/fm/resources/images/actions/16/chmod.png');
-}
+} */
 .fm-action-remove {
   background-image: url('/fm/resources/images/actions/16/remove.png');
 }

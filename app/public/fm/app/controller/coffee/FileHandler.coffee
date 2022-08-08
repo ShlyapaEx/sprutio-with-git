@@ -11,7 +11,7 @@ Ext.define 'FM.controller.FileHandler',
           eventFilesDirectoryOpen: 'openDirectory'
           eventFilesListFiles: 'listFiles'
           eventFilesRemoveFiles: 'removeFiles'
-          eventFilesChmodFiles: 'chmodFiles'
+          # eventFilesChmodFiles: 'chmodFiles'
           eventFilesMakeDirectory: 'makeDirectory'
           eventFilesNewFile: 'newFile'
           eventFilesRenameFile: 'renameFile'
@@ -254,35 +254,35 @@ Ext.define 'FM.controller.FileHandler',
       FM.helpers.ShowError(t("Unknown operation status. Please contact Support."))
       return
 
-  chmodFiles: (status, session, progress_window, params) ->
-    FM.Logger.log('Event chmodFiles run in FileHandler! data = ', arguments)
+  # chmodFiles: (status, session, progress_window, params) ->
+  #   FM.Logger.log('Event chmodFiles run in FileHandler! data = ', arguments)
 
-    if status.status? and (status.status == FM.Status.STATUS_SUCCESS or status.status == FM.Status.STATUS_ABORT)
-      progress_window.close()
+  #   if status.status? and (status.status == FM.Status.STATUS_SUCCESS or status.status == FM.Status.STATUS_ABORT)
+  #     progress_window.close()
 
-      FM.helpers.ApplySession session, (panel) ->
-        panel.filelist.clearListCache()
+  #     FM.helpers.ApplySession session, (panel) ->
+  #       panel.filelist.clearListCache()
 
-        # Update grids if same path
-        if panel.session.path == session.path
-          FM.Actions.Refresh.execute([panel])
+  #       # Update grids if same path
+  #       if panel.session.path == session.path
+  #         FM.Actions.Refresh.execute([panel])
 
-      if status.data.errors? and status.data.errors.length > 0
-        FM.helpers.ShowError(Ext.util.Format.format(t("Unable to change attributes of {0} elements."), status.data.errors.length))
+  #     if status.data.errors? and status.data.errors.length > 0
+  #       FM.helpers.ShowError(Ext.util.Format.format(t("Unable to change attributes of {0} elements."), status.data.errors.length))
 
-      if status.status == FM.Status.STATUS_ABORT
-        FM.Logger.info('Remove Operation Aborted', status)
-      else
-        FM.Logger.info('Operation success', status)
+  #     if status.status == FM.Status.STATUS_ABORT
+  #       FM.Logger.info('Remove Operation Aborted', status)
+  #     else
+  #       FM.Logger.info('Operation success', status)
 
-    else if status.status? and status.status == FM.Status.STATUS_ERROR
-      progress_window.close()
-      FM.Logger.info('Operation error', status)
-      FM.helpers.ShowError(t("Error during operation. Please contact Support."))
-      return
-    else
-      FM.helpers.ShowError(t("Unknown operation status. Please contact Support."))
-      return
+  #   else if status.status? and status.status == FM.Status.STATUS_ERROR
+  #     progress_window.close()
+  #     FM.Logger.info('Operation error', status)
+  #     FM.helpers.ShowError(t("Error during operation. Please contact Support."))
+  #     return
+  #   else
+  #     FM.helpers.ShowError(t("Unknown operation status. Please contact Support."))
+  #     return
 
   analyzeSize: (status, session, chart_window) ->
     FM.Logger.log('Event analyzeSize run in FileHandler! data = ', arguments)
