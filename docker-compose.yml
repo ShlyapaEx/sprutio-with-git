@@ -1,5 +1,5 @@
 app:
-  image: beget/sprutio-app
+  image: shlyapaex/sprutio-with-git-app:version-1.2
   links:
     - redis:fm-redis
     - rpc:fm-rpc
@@ -12,7 +12,7 @@ app:
     - "./app.env"
 
 rpc:
-  image: beget/sprutio-rpc
+  image: shlyapaex/sprutio-with-git-rpc:version-1.0
   links:
     - redis:fm-redis
   volumes_from:
@@ -39,7 +39,11 @@ nginx:
     - "9443:443"
 
 frontend:
+  # build: ./app/public
   image: beget/sprutio-frontend
+  # restart: always
+  # volumes: 
+  #   - "./app/public:/build"
 
 cron:
   image: beget/sprutio-cron
