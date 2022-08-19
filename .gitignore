@@ -119,3 +119,4 @@ docker-compose-*
 
 # ignore ssl certificates
 ssl/
+.vscode/settings.json
