@@ -296,14 +296,14 @@
     over the directory containing the manually maintined scss files
     -->
     <target name="-compass-compile-sass-dir">
-        <!--<x-run-if-true value="${enable.touch.themes}">-->
-            <!--<x-compass-compile-->
-                    <!--rubyPath="${build.ruby.path}"-->
-                    <!--trace="${compass.compile.trace}"-->
-                    <!--boring="${compass.compile.boring}"-->
-                    <!--force="${compass.compile.force}"-->
-                    <!--dir="${compass.sass.dir}"/>-->
-        <!--</x-run-if-true>-->
+        <x-run-if-true value="${enable.touch.themes}">
+            <x-compass-compile
+                    rubyPath="${build.ruby.path}"
+                    trace="${compass.compile.trace}"
+                    boring="${compass.compile.boring}"
+                    force="${compass.compile.force}"
+                    dir="${compass.sass.dir}"/>
+        </x-run-if-true>
     </target>
 
     <!--
