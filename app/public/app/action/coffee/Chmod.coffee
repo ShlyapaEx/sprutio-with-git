@@ -95,3 +95,4 @@ Ext.define 'FM.action.Chmod',
         progress_window.close()
         FM.helpers.ShowError(t("Error during chmod operation aborting. Please contact Support."))
         FM.Logger.error(response)
+        
