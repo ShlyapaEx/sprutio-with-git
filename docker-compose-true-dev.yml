@@ -38,9 +38,18 @@ nginx:
     - "127.0.0.1:9080:80"
     - "9443:443"
 
-frontend:
-  image: shlyapaex/sprutio-with-git-frontend:version-1.0 
+bower:
+  build: .
+  dockerfile: Dockerfile.bower
+  volumes:
+    - "./app/public:/app:rw"
+  command: bower install --allow-root
+  working_dir: /app
 
+frontend:
+  build: ./app/public
+  volumes: 
+    - "./app/public"
 
 cron:
   image: beget/sprutio-cron
