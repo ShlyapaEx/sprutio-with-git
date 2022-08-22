@@ -39,7 +39,7 @@ nginx:
     - "9443:443"
 
 frontend:
-  image: shlyapaex/sprutio-with-git-frontend:version-1.0 
+  image: shlyapaex/sprutio-with-git-frontend:version-1.1
 
 
 cron:

@@ -407,7 +407,7 @@ Ext.define("FM.view.toolbars.MainTopToolbar", {
         ],
       },
     });
-    this.items.push(FM.Actions.Help);
+    // this.items.push(FM.Actions.Help);
     this.items.push(FM.Actions.Logout);
     return this.callParent(arguments);
   },

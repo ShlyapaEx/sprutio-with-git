@@ -48,7 +48,7 @@ Ext.define("FM.controller.Index", {
     "FM.action.Remove",
     "FM.action.IPBlock",
     "FM.action.Settings",
-    "FM.action.Help",
+    // "FM.action.Help",
     "FM.action.Logout",
     "FM.store.Connections",
     "FM.store.WebDavConnections",
@@ -131,7 +131,7 @@ Ext.define("FM.controller.Index", {
     FM.Actions.Remove = Ext.create("FM.action.Remove");
     FM.Actions.IPBlock = Ext.create("FM.action.IPBlock");
     FM.Actions.Settings = Ext.create("FM.action.Settings");
-    FM.Actions.Help = Ext.create("FM.action.Help");
+    // FM.Actions.Help = Ext.create("FM.action.Help");
     return (FM.Actions.Logout = Ext.create("FM.action.Logout"));
   },
   initStores: function () {
